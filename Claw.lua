@@ -1,8 +1,8 @@
 for i,weapon in pairs(game.ReplicatedStorage.WeaponINFO:GetChildren()) do
      if weapon:FindFirstChild("SwingSpeed") then
-	    weapon.SwingSpeed.Value = 1.25
+	    weapon.SwingSpeed.Value = 10
         weapon.Stamina.Value = -1
-        weapon.M1Delay.Value = 0.35
+        weapon.M1Delay.Value = -1
 	end
 end
 ----Functions
