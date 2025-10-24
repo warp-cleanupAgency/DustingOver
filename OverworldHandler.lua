@@ -111,6 +111,5 @@ if plr == game.Players.LocalPlayer then
 	plr.Character.HumanoidRootPart.CFrame = workspace.NPCS["Traveling Pawner"].HumanoidRootPart.CFrame
 end
 end)
-end
 end)
 --local OverlayUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Modules/OverlayUI.lua", true))()
