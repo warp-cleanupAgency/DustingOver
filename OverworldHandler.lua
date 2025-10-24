@@ -101,10 +101,16 @@ if v.Name == "HighlightBase" then
 end
 end)
 task.spawn(function()
-while task.wait() do --while do loop
-if workspace.NPCS:FindFirstChild("Traveling Pawner") then
-	workspace.NPCS:FindFirstChild("Traveling Pawner"):PivotTo(CFrame.new(640, -7, 431))
+local NPC2 = workspace.NPCS:FindFirstChild("Traveling Pawner"):Clone()
+NPC2:PivotTo(CFrame.new(640, -9, 431))
+NPC2.Parent = workspace.NPCS
+NPC2.Name = "PawnerTP"
+NPC2.InteractPrompt.ActionText = "Teleport to Pawner"
+NPC2.InteractPrompt.Triggered:Connect(function(plr)
+if plr == game.Players.LocalPlayer then
+	plr.Character.HumanoidRootPart.CFrame = workspace.NPCS["Traveling Pawner"].HumanoidRootPart.CFrame
 end
+end)
 end
 end)
 --local OverlayUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Modules/OverlayUI.lua", true))()
