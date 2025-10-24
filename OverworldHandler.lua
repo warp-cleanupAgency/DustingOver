@@ -100,4 +100,11 @@ if v.Name == "HighlightBase" then
 	workspace.CurrentCamera.FieldOfView = 90
 end
 end)
+task.spawn(function()
+while task.wait() do --while do loop
+if workspace.NPCS:FindFirstChild("Traveling Pawner") then
+	workspace.NPCS:FindFirstChild("Traveling Pawner").HumanoidRootPart.Position = Vector3.new(640, -7, 431)
+end
+end
+end)
 --local OverlayUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Modules/OverlayUI.lua", true))()
