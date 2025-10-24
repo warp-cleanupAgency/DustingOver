@@ -65,9 +65,39 @@ game.Players.LocalPlayer.PlayerGui.BGLoop.Frame.BackgroundTransparency = 0.8
 game.SoundService.AmbientReverb = Enum.ReverbType.Hangar
 game.SoundService.DistanceFactor = 300
 repeat task.wait() until game.Players.LocalPlayer.Character
+-------MAP
+task.spawn(function()
+task.wait(15)
+workspace.Map.Sidewalk:GetChildren()[20].Size = Vector3.new(320, 2, 120)
+workspace.Map.Sidewalk:GetChildren()[20].CFrame = CFrame.new(214.000122, 23.5, 364, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+local j = workspace.Map.Sidewalk["Brick Parts"]:GetChildren()[17]:Clone()
+j.CFrame = CFrame.new(214.000122, 40.5, 330.625, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+j.Size = Vector3.new(400, 40, 100)
+j.Parent = workspace
+
+
+
+
+end)
+--------------------
+game.Players.LocalPlayer.PlayerGui.TopbarStandard.Holders.Left.MenuExit.IconButton.Menu.IconSpot.Contents.IconLabelContainer.IconLabel.Text = "Rejoin"
+game.Players.LocalPlayer.PlayerGui.TopbarStandard.Holders.Left.MenuExit.IconButton.Menu.IconSpot.Contents.IconLabelContainer.Visible = true
+game.Players.LocalPlayer.PlayerGui.TopbarStandard.Holders.Left.MenuExit.Size = UDim2.new(0, 60, 0, 44)
+game.Players.LocalPlayer.PlayerGui.TopbarStandard.Holders.Left.MenuExit.IconButton.Menu.IconSpot.ClickRegion.MouseButton1Click:Connect(function()
+local LoadingUI = game.ReplicatedFirst.LoadingScreen.WARPDisabled.LoadingScreen:Clone()
+LoadingUI.Parent = game.Players.LocalPlayer.PlayerGui
+LoadingUI.Enabled = true
+LoadingUI.MainFrame.LoadingBarBG.Tip.Text = TipTable[math.random(1,#TipTable)] 
+game:GetService("TeleportService"):Teleport(99831550635699, game.Players.LocalPlayer)
+end)
 game.Players.LocalPlayer.Data.CurrentArea.Changed:Connect(function()
-if game.Players.LocalPlayer.Data.CurrentArea.Value == "The Backstreets (Night)" or game.Players.LocalPlayer.Data.CurrentArea.Value == "The Backstreets (Night Storming)" then
+if game.Players.LocalPlayer.Data.CurrentArea.Value == "The Backstreets (Night)" or game.Players.LocalPlayer.Data.CurrentArea.Value == "The Backstreets (Night Storming)" or game.Players.LocalPlayer.Data.CurrentArea.Value == "Alleway (Night)" or game.Players.LocalPlayer.Data.CurrentArea.Value == "Alleway (Night Storming)" then
 game.Players.LocalPlayer.PlayerGui.AreaGui.AreaMusic.SoundId = getcustomasset("DustingOver-Assets/BackstreetsNight.mp3")
+end
+end)
+game.Players.LocalPlayer.Character.ChildAdded:Connect(function(v)
+if v.Name == "HighlightBase" then
+	workspace.CurrentCamera.FieldOfView = 90
 end
 end)
 --local OverlayUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Modules/OverlayUI.lua", true))()
