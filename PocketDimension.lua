@@ -1,4 +1,5 @@
-local OverlayUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Arbiter.lua", true))()
+local OverlayUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/OverlayUI.lua", true))()
+local PlaySound = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/PlaySound.lua", true))()
 ---Pocket Dimension
 task.spawn(function()
 local Skill = Instance.new("Tool")
@@ -18,15 +19,15 @@ local SkillAttributes = {
 }
 ---SKILL FUNCTIONS
 local player = game.Players.LocalPlayer
-function SkillActivated4()
+function SkillActivated()
    local anim = Instance.new("Animation")
    anim.AnimationId = "rbxassetid://17438912614"
    local track = player.Character.Humanoid:LoadAnimation(anim)
    track:Play()
    task.wait(0.5)
    OverlayUI("Warp")
-   Sound:Play()
-   Sound2:Play()
+   PlaySound("rbxassetid://82746823514134", "Teleport")
+   PlaySound("rbxassetid://78220184754386", "Move")
    game.Players.LocalPlayer.Character:Destroy()
    game:GetService("TeleportService"):Teleport(99831550635699, game.Players.LocalPlayer)
 end
@@ -42,7 +43,7 @@ end
 Skill.Equipped:Connect(function()
 print("SkillUsed")
 task.spawn(function()
-SkillActivated4()
+SkillActivated()
 end)
 task.wait(0.15)
 Skill.Parent = game.Players.LocalPlayer.Backpack
