@@ -102,7 +102,7 @@ end
 end)
 task.spawn(function()
 local NPC2 = workspace.NPCS:FindFirstChild("Traveling Pawner"):Clone()
-NPC2:PivotTo(CFrame.new(640, -9, 431))
+NPC2:PivotTo(CFrame.new(640, -7.2, 431))
 NPC2.Parent = workspace.NPCS
 NPC2.Name = "PawnerTP"
 NPC2.InteractPrompt.ActionText = "Teleport to Pawner"
