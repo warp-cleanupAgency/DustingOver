@@ -85,6 +85,11 @@ if v:IsA("ParticleEmitter") then
 	v.Color = ColorSequence.new(Color3.fromRGB(65, 179, 255))
 end
 end)
+game.Players.LocalPlayer.Data.CurrentArea.Changed:Connect(function()
+if game.Players.LocalPlayer.Data.CurrentArea.Value == "The Backstreets (Night)" then
+game.Players.LocalPlayer.PlayerGui.AreaGui.AreaMusic.SoundId = getcustomasset("DustingOver-Assets/BackstreetsNight.mp3")
+end
+end)
 task.spawn(function()
 while task.wait() do
 game.Players.LocalPlayer.Character.Weapon.Value = "Executioner's Claw"
