@@ -103,7 +103,7 @@ end)
 task.spawn(function()
 while task.wait() do --while do loop
 if workspace.NPCS:FindFirstChild("Traveling Pawner") then
-	workspace.NPCS:FindFirstChild("Traveling Pawner").HumanoidRootPart.Position = Vector3.new(640, -7, 431)
+	workspace.NPCS:FindFirstChild("Traveling Pawner"):PivotTo(640, -7, 431)
 end
 end
 end)
