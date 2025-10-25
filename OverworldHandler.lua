@@ -157,6 +157,29 @@ end)
 -------MAP
 task.spawn(function()
 task.wait(15)
+for i,v in pairs(workspace:GetDescendants()) do
+	if v.Name == "TrashBag" then
+		local prompt = Instance.new("ProximityPrompt")
+		prompt.Parent = v 
+		prompt.Enabled = true
+		prompt.Style = Enum.ProximityPromptStyle.Custom
+		prompt.ActionText = "Search"
+		prompt.HoldDuration = 3
+		prompt.Triggered:Connect(function()
+        task.spawn(function()
+		prompt.Enabled = false
+		task.wait(360)
+		prompt.Enabled = true
+		end)
+		if math.random(1,2) == 1 then
+			Subtitle("Found nothing.")
+		else
+			Subtitle("Found some Meat and ate it. (+5 Hunger)")
+			Hunger += 5
+		end
+		end)
+	end
+end
 workspace.Map.Sidewalk.SidewalkSubway.SidewalkCollision.Union2.Size = Vector3.new(400.125, 2.0000991821289062, 280)
 local j = workspace.Map.Sidewalk["Brick Parts"]:FindFirstChildOfClass("Part"):Clone()
 j.CFrame = CFrame.new(214.000122, 40.5, 330.625, -1, 0, 0, 0, 1, 0, 0, 0, -1)
