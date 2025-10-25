@@ -1,7 +1,14 @@
 function Format(Int)
 	return string.format("%02i", Int)
 end
-
+function chatMessage(str)
+    str = tostring(str)
+    if not isLegacyChat then
+        TextChatService.TextChannels.RBXGeneral:SendAsync(str)
+    else
+        ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(str, "All")
+    end
+end
 function convertToHMS(Seconds)
 	local Minutes = (Seconds - Seconds%60)/60
 	Seconds = Seconds - Minutes*60
@@ -32,7 +39,7 @@ TipTable = {
 	"I hate archived mods!",
 	"Lobotomy of ruina company"
 }
-
+game.ReplicatedStorage.PermadeathEnabled.Value = true
 -----------
 ---NITB = rbxassetid://89530928135778
 if game.Players.LocalPlayer:FindFirstChild("DustingOver") then return end
@@ -347,7 +354,8 @@ game.Players.LocalPlayer.Character.Humanoid.HealthChanged:Connect(function()
 if game.Players.LocalPlayer.Character.Humanoid.Health <= 0.1 then
 	game.Players.LocalPlayer.PlayerGui.OverlayGui.Blindness.Visible = true
 	game.Players.LocalPlayer.Character.Humanoid.Health = 0
-	game:GetService("TeleportService"):Teleport(99831550635699, game.Players.LocalPlayer)
+	task.wait(5)
+    game:GetService("TeleportService"):Teleport(99831550635699, game.Players.LocalPlayer)
 end
 end)
 end)
