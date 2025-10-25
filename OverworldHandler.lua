@@ -24,6 +24,10 @@ TipTable = {
 
 -----------
 ---NITB = rbxassetid://89530928135778
+if game.Players.LocalPlayer:FindFirstChild("DustingOver") then return end
+local DustingOver = Instance.new("Folder")
+DustingOver.Parent = game.Players.LocalPlayer
+DustingOver.Name = "DustingOver"
 local PlaySound = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Modules/PlaySound.lua", true))()
 game.Players.LocalPlayer.PlayerGui.BGLoop.Music.Volume = 0
 if game.PlaceId ~= 99831550635699 then
@@ -65,6 +69,50 @@ game.Players.LocalPlayer.PlayerGui.BGLoop.Frame.BackgroundTransparency = 0.8
 game.SoundService.AmbientReverb = Enum.ReverbType.Hangar
 game.SoundService.DistanceFactor = 300
 repeat task.wait() until game.Players.LocalPlayer.Character
+----INTRO
+task.spawn(function()
+game.Players.LocalPlayer.PlayerGui.OverlayGui.Blindness.Visible = true
+task.wait(12.5)
+local TrainAmbience = Instance.new("Sound")
+TrainAmbience.Looped = true
+TrainAmbience.SoundId = "rbxassetid://18940522285"
+TrainAmbience.Parent = game.Players.LocalPlayer.PlayerGui
+TrainAmbience:Play()
+game.Players.LocalPlayer.PlayerGui.OverlayGui.Blindness.Visible = false
+for i,v in pairs(workspace.Map.NewSubway.Invis:GetChildren()) do
+	v.CanCollide = false
+end
+local evilPart = Instance.new("Part")
+evilPart.Parent = workspace
+evilPart.Anchored = true
+evilPart.Transparency = 0
+evilPart.CFrame = CFrame.new(97.3875122, 7.1536994, 585.833069, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+evilPart.Size = Vector3.new(2048, 50.11249923706055, 1.6500015258789062)
+evilPart.Color = Color3.fromRGB(0, 0, 0)
+evilPart.Material = Enum.Material.Neon
+local evilPart2 = Instance.new("Part")
+evilPart2.Parent = workspace
+evilPart2.Anchored = true
+evilPart2.Transparency = 0
+evilPart2.CFrame = CFrame.new(111.412506, 7.1536994, 641.233093, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+evilPart2.Size = Vector3.new(2048, 50.11249923706055, 1.6500015258789062)
+evilPart2.Color = Color3.fromRGB(0, 0, 0)
+evilPart2.Material = Enum.Material.Neon
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(103.624969, 9.99958611, 519.599976, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+task.wait(18)
+PlaySound("rbxassetid://18919029745", "TrainHorn")
+local AnnouncSound = Instance.new("Sound")
+AnnouncSound.Parent = game.Players.LocalPlayer.PlayerGui
+AnnouncSound.Volume = 0
+AnnouncSound.SoundId = "rbxassetid://7355865033"
+AnnouncSound:Play()
+game:GetService("TweenService"):Create(AnnouncSound, TweenInfo.new(5), {Volume = 0.8}):Play()
+task.wait(5)
+TrainAmbience:Stop()
+evilPart:Destroy()
+evilPart2:Destroy()
+TrainAmbience:Destroy()
+end)
 -------MAP
 task.spawn(function()
 task.wait(15)
