@@ -267,7 +267,7 @@ game.Players.LocalPlayer.Character.ChildAdded:Connect(function(v)
 if v.Name == "HighlightBase" then
 	workspace.CurrentCamera.FieldOfView = 90
 elseif v.Name == "LightAttack" or v.Name == "DashFrames" or v.Name == "RunAttackTag" or v.Name == "UsingMove" then
-	Hunger -= 0.1
+	Hunger -= 0.3
 end
 end)
 task.spawn(function()
