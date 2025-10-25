@@ -6,7 +6,7 @@ return function(arg1, arg2) -- Line 132
 		[3]: module_12_upvr (readonly)
 		[4]: TweenService_upvr (readonly)
 	]]
-	local var27
+	local var27 = arg2
 	if false then
 	else
 		local LocalPlayer = game.Players.LocalPlayer
