@@ -175,14 +175,14 @@ for i,v in pairs(workspace:GetDescendants()) do
 		prompt.Triggered:Connect(function()
         task.spawn(function()
 		prompt.Enabled = false
-		task.wait(360)
+		task.wait(120)
 		prompt.Enabled = true
 		end)
 		if math.random(1,2) == 1 then
 			Subtitle("Found nothing.")
 		else
-			Subtitle("Found some Meat and ate it. (+5 Hunger)")
-			Hunger += 5
+			Subtitle("Found some Meat and ate it. (+20 Hunger)")
+			Hunger += 20
 		end
 		end)
 	end
