@@ -89,6 +89,42 @@ game.SoundService.DistanceFactor = 300
 repeat task.wait() until game.Players.LocalPlayer.Character
 local OverlayUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Modules/OverlayUI.lua", true))()
 local Subtitle = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Modules/Subtitle.lua", true))()
+task.spawn(function()
+task.wait(40)
+while task.wait(35) do
+
+--if game.Lighting.ClockTime >= 3.23 and game.Lighting.ClockTime <= 6.26 then
+if game.Lighting.ClockTime >= 3.23 and game.Lighting.ClockTime <= 4.14 then
+if game.Lighting.ClockTime == 3.23 then
+Subtitle("The Sweepers are approaching. Leaving is unsafe until 4:14", "#FF0000")
+else
+task.spawn(function()
+local Sweepers = game.ReplicatedStorage.Assets.SweeperRunningHorde:Clone()
+Sweepers.Parent = workspace.Alive
+Sweepers.Holder.CFrame = workspace.Map.SweeperSpawns:GetChildren()[math.random(1,#workspace.Map.SweeperSpawns:GetChildren())].CFrame
+task.spawn(function()
+while Sweepers do
+	task.wait()
+	if (Sweepers.Holder.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 20 then
+		print("j")
+		game.Players.LocalPlayer.Character.Humanoid.Health = 0
+	end
+end
+end)
+for i = 1,20 do
+if math.random(1,350) == 350 then
+game:GetService("TweenService"):Create(Sweepers.Holder, TweenInfo.new(1.5), {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, 5, 0)}):Play()
+else
+game:GetService("TweenService"):Create(Sweepers.Holder, TweenInfo.new(1.5), {CFrame = workspace.Map.SweeperSpawns:GetChildren()[math.random(1,#workspace.Map.SweeperSpawns:GetChildren())].CFrame}):Play()
+end
+task.wait(1.5)
+end
+Sweepers:Destroy()
+end)
+end
+end
+end
+end)
 -----UI CHANGES--------
 ------HUNGER N THIRST------
 local Hunger = 100
