@@ -1,3 +1,14 @@
+function Format(Int)
+	return string.format("%02i", Int)
+end
+
+function convertToHMS(Seconds)
+	local Minutes = (Seconds - Seconds%60)/60
+	Seconds = Seconds - Minutes*60
+	local Hours = (Minutes - Minutes%60)/60
+	Minutes = Minutes - Hours*60
+	return Format(Hours)..":"..Format(Minutes)..":"..Format(Seconds)
+end
 TipTable = {
 	"Dustpuff when you articulate jones pigeons:",
 	"Hello? Goodbye!",
@@ -69,10 +80,37 @@ game.Players.LocalPlayer.PlayerGui.BGLoop.Frame.BackgroundTransparency = 0.8
 game.SoundService.AmbientReverb = Enum.ReverbType.Hangar
 game.SoundService.DistanceFactor = 300
 repeat task.wait() until game.Players.LocalPlayer.Character
-----INTRO
+local OverlayUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Modules/OverlayUI.lua", true))()
+local Subtitle = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Modules/Subtitle.lua", true))()
+-----UI CHANGES--------
+------HUNGER N THIRST------
+local Hunger = 100
+local Thirst = 100
+game.Players.LocalPlayer.PlayerGui.Stats.UI.HealthSlider.Visible = false
+local HungerBar = game.Players.LocalPlayer.PlayerGui.Stats.UI.HealthSlider:Clone()
+HungerBar.Visible = true
+HungerBar.Name = "HungerSlider"
+HungerBar.Parent = game.Players.LocalPlayer.PlayerGui.Stats.UI
+HungerBar.SliderClip.Slider.ImageColor3 = Color3.fromRGB(142, 89, 0)
+task.spawn(function()
+while task.wait() do
+game.Players.LocalPlayer.PlayerGui.Stats.UI.GradeSlider.Visible = true
+Hunger -= 0.001
+HungerBar.SliderClip.Size = UDim2.new(Hunger / 100, 0, 1, 0)
+--HungerBar.SliderClip
+HungerBar.Amount.Text = Hunger.."/100"
+if Hunger <= 0 then
+	game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end
+end
+end)
+----INTRO----------------
 task.spawn(function()
 game.Players.LocalPlayer.PlayerGui.OverlayGui.Blindness.Visible = true
-task.wait(12.5)
+task.wait(11.5)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(103.624969, 8.5, 519.599976, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+task.wait(1.5)
 local TrainAmbience = Instance.new("Sound")
 TrainAmbience.Looped = true
 TrainAmbience.SoundId = "rbxassetid://18940522285"
@@ -82,6 +120,7 @@ game.Players.LocalPlayer.PlayerGui.OverlayGui.Blindness.Visible = false
 for i,v in pairs(workspace.Map.NewSubway.Invis:GetChildren()) do
 	v.CanCollide = false
 end
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
 local evilPart = Instance.new("Part")
 evilPart.Parent = workspace
 evilPart.Anchored = true
@@ -98,7 +137,6 @@ evilPart2.CFrame = CFrame.new(111.412506, 7.1536994, 641.233093, 0, 0, 1, 0, 1, 
 evilPart2.Size = Vector3.new(2048, 50.11249923706055, 1.6500015258789062)
 evilPart2.Color = Color3.fromRGB(0, 0, 0)
 evilPart2.Material = Enum.Material.Neon
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(103.624969, 9.99958611, 519.599976, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 task.wait(18)
 PlaySound("rbxassetid://18919029745", "TrainHorn")
 local AnnouncSound = Instance.new("Sound")
@@ -112,16 +150,70 @@ TrainAmbience:Stop()
 evilPart:Destroy()
 evilPart2:Destroy()
 TrainAmbience:Destroy()
+task.wait(20)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(48, 28, 510)
+workspace.Map.NewSubway:Destroy()
 end)
 -------MAP
 task.spawn(function()
 task.wait(15)
-workspace.Map.Sidewalk:GetChildren()[20].Size = Vector3.new(320, 2, 120)
-workspace.Map.Sidewalk:GetChildren()[20].CFrame = CFrame.new(214.000122, 23.5, 364, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-local j = workspace.Map.Sidewalk["Brick Parts"]:GetChildren()[17]:Clone()
+workspace.Map.Sidewalk.SidewalkSubway.SidewalkCollision.Union2.Size = Vector3.new(400.125, 2.0000991821289062, 280)
+local j = workspace.Map.Sidewalk["Brick Parts"]:FindFirstChildOfClass("Part"):Clone()
 j.CFrame = CFrame.new(214.000122, 40.5, 330.625, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 j.Size = Vector3.new(400, 40, 100)
 j.Parent = workspace
+local part1 = Instance.new('Part', game.Workspace)
+part1.Name = 'Blockage'
+part1.Position = Vector3.new(-5.999875068664551, 23, 604)
+part1.Size = Vector3.new(40, 400, 170)
+part1.Orientation = Vector3.new(0, 0, 0)
+part1.Color = Color3.fromRGB(0.3333333432674408, 0.3333333432674408, 0.3333333432674408)
+part1.BrickColor = BrickColor.new(0.3333333432674408, 0.3333333432674408, 0.3333333432674408)
+part1.Material = Enum.Material['DiamondPlate']
+part1.Transparency = 0
+part1.Reflectance = 0
+part1.Anchored = true
+part1.CanCollide = true
+part1.Locked = false
+local part2 = Instance.new('Part', game.Workspace)
+part2.Name = 'Blockage'
+part2.Position = Vector3.new(-5.999875068664551, 23, 728)
+part2.Size = Vector3.new(40, 400, 45)
+part2.Orientation = Vector3.new(0, 0, 0)
+part2.Color = Color3.fromRGB(0.3333333432674408, 0.3333333432674408, 0.3333333432674408)
+part2.BrickColor = BrickColor.new(0.3333333432674408, 0.3333333432674408, 0.3333333432674408)
+part2.Material = Enum.Material['DiamondPlate']
+part2.Transparency = 0
+part2.Reflectance = 0
+part2.Anchored = true
+part2.CanCollide = true
+part2.Locked = false
+local part3 = Instance.new('Part', game.Workspace)
+part3.Name = 'Blockage'
+part3.Position = Vector3.new(-40.000125885009766, 40, 430)
+part3.Size = Vector3.new(2048, 480, 80)
+part3.Orientation = Vector3.new(0, 0, 0)
+part3.Color = Color3.fromRGB(0.3333333432674408, 0.3333333432674408, 0.3333333432674408)
+part3.BrickColor = BrickColor.new(0.3333333432674408, 0.3333333432674408, 0.3333333432674408)
+part3.Material = Enum.Material['Concrete']
+part3.Transparency = 0
+part3.Reflectance = 0
+part3.Anchored = true
+part3.CanCollide = true
+part3.Locked = false
+local part4 = Instance.new('Part', game.Workspace)
+part4.Name = 'Blockage'
+part4.Position = Vector3.new(-5.999875068664551, -177, 764)
+part4.Size = Vector3.new(920, 2048, 40)
+part4.Orientation = Vector3.new(0, 0, 0)
+part4.Color = Color3.fromRGB(0.3333333432674408, 0.3333333432674408, 0.3333333432674408)
+part4.BrickColor = BrickColor.new(0.3333333432674408, 0.3333333432674408, 0.3333333432674408)
+part4.Material = Enum.Material['Concrete']
+part4.Transparency = 0
+part4.Reflectance = 0
+part4.Anchored = true
+part4.CanCollide = true
+part4.Locked = false
 
 
 
@@ -141,11 +233,18 @@ end)
 game.Players.LocalPlayer.Data.CurrentArea.Changed:Connect(function()
 if game.Players.LocalPlayer.Data.CurrentArea.Value == "The Backstreets (Night)" or game.Players.LocalPlayer.Data.CurrentArea.Value == "The Backstreets (Night Storming)" or game.Players.LocalPlayer.Data.CurrentArea.Value == "Alleway (Night)" or game.Players.LocalPlayer.Data.CurrentArea.Value == "Alleway (Night Storming)" then
 game.Players.LocalPlayer.PlayerGui.AreaGui.AreaMusic.SoundId = getcustomasset("DustingOver-Assets/BackstreetsNight.mp3")
+elseif game.Players.LocalPlayer.Data.CurrentArea.Value == "The Darius" then
+	task.wait(2)
+	Subtitle("This one'll be good rat meat!", "#FF0000")
+	task.wait(1)
+	game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end
 end)
 game.Players.LocalPlayer.Character.ChildAdded:Connect(function(v)
 if v.Name == "HighlightBase" then
 	workspace.CurrentCamera.FieldOfView = 90
+elseif v.Name == "LightAttack" or v.Name == "DashFrames" or v.Name == "RunAttackTag" or v.Name == "UsingMove" then
+	Hunger -= 1
 end
 end)
 task.spawn(function()
@@ -160,4 +259,73 @@ if plr == game.Players.LocalPlayer then
 end
 end)
 end)
---local OverlayUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Modules/OverlayUI.lua", true))()
+task.spawn(function()
+---Pocket Watch---
+task.spawn(function()
+local Skill = Instance.new("Tool")
+Skill.Name = "Pocket Watch"
+Skill.CanBeDropped = false
+Skill.RequiresHandle = false
+----------EDITING------------------------
+Skill.ToolTip = "Check the current time." --Description
+local SkillTags = {
+	"Unique",
+	"Page"
+}
+local SkillAttributes = {
+	["CD"] = 5,
+	["LightCost"] = 0,
+	["RealPageName"] = "Pocket Watch"
+}
+---SKILL FUNCTIONS
+local player = game.Players.LocalPlayer
+function SkillActivated()
+  --local anim = Instance.new("Animation")
+   --anim.AnimationId = "rbxassetid://17438912614"
+   --local track = player.Character.Humanoid:LoadAnimation(anim)
+   --track:Play()
+   OverlayUI("White")
+   Subtitle(game.Lighting.TimeOfDay)
+end
+------------------------------------------
+for i,v in pairs(SkillTags) do
+	local e = Instance.new("Folder")
+	e.Parent = Skill
+	e.Name = v
+end
+for i,v in pairs(SkillAttributes) do
+	Skill:SetAttribute(i, v)
+end
+Skill.Equipped:Connect(function()
+print("SkillUsed")
+task.spawn(function()
+SkillActivated()
+end)
+task.wait(0.15)
+Skill.Parent = game.Players.LocalPlayer.Backpack
+
+end)
+
+
+
+-----------
+Skill.Parent = game.Players.LocalPlayer.Backpack
+end)
+task.spawn(function()
+----Bleedin out
+task.spawn(function()
+while task.wait(1) do
+	
+end
+end)
+end)
+task.spawn(function()
+game.Players.LocalPlayer.Character.Humanoid.HealthChanged:Connect(function()
+if game.Players.LocalPlayer.Character.Humanoid.Health <= 0.1 then
+	game.Players.LocalPlayer.PlayerGui.OverlayGui.Blindness.Visible = true
+	game.Players.LocalPlayer.Character.Humanoid.Health = 0
+	game:GetService("TeleportService"):Teleport(99831550635699, game.Players.LocalPlayer)
+end
+end)
+end)
+end)
