@@ -158,7 +158,7 @@ end)
 task.spawn(function()
 task.wait(15)
 for i,v in pairs(workspace:GetDescendants()) do
-	if v.Name == "TrashBag" then
+	if v.Name == "TrashBags" then
 		local prompt = Instance.new("ProximityPrompt")
 		prompt.Parent = v 
 		prompt.Enabled = true
@@ -267,7 +267,7 @@ game.Players.LocalPlayer.Character.ChildAdded:Connect(function(v)
 if v.Name == "HighlightBase" then
 	workspace.CurrentCamera.FieldOfView = 90
 elseif v.Name == "LightAttack" or v.Name == "DashFrames" or v.Name == "RunAttackTag" or v.Name == "UsingMove" then
-	Hunger -= 1
+	Hunger -= 0.1
 end
 end)
 task.spawn(function()
