@@ -89,10 +89,10 @@ game.SoundService.DistanceFactor = 300
 repeat task.wait() until game.Players.LocalPlayer.Character
 local OverlayUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Modules/OverlayUI.lua", true))()
 local Subtitle = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Modules/Subtitle.lua", true))()
+
 task.spawn(function()
 task.wait(40)
 while task.wait(35) do
-
 --if game.Lighting.ClockTime >= 3.23 and game.Lighting.ClockTime <= 6.26 then
 if game.Lighting.ClockTime >= 3.23 and game.Lighting.ClockTime <= 4.14 then
 if game.Lighting.ClockTime == 3.23 then
@@ -223,6 +223,29 @@ for i,v in pairs(workspace:GetDescendants()) do
 		end)
 	end
 end
+workspace.DescendantAdded:Connect(function(v)
+if v.Name == "TrashBags" then
+local prompt = Instance.new("ProximityPrompt")
+		prompt.Parent = v 
+		prompt.Enabled = true
+		prompt.Style = Enum.ProximityPromptStyle.Custom
+		prompt.ActionText = "Search"
+		prompt.HoldDuration = 3
+		prompt.Triggered:Connect(function()
+        task.spawn(function()
+		prompt.Enabled = false
+		task.wait(120)
+		prompt.Enabled = true
+		end)
+		if math.random(1,2) == 1 then
+			Subtitle("Found nothing.")
+		else
+			Subtitle("Found some Meat and ate it. (+20 Hunger)")
+			Hunger += 20
+		end
+		end)
+end
+end)
 workspace.Map.Sidewalk.SidewalkSubway.SidewalkCollision.Union2.Size = Vector3.new(400.125, 2.0000991821289062, 280)
 local j = workspace.Map.Sidewalk["Brick Parts"]:FindFirstChildOfClass("Part"):Clone()
 j.CFrame = CFrame.new(214.000122, 40.5, 330.625, -1, 0, 0, 0, 1, 0, 0, 0, -1)
