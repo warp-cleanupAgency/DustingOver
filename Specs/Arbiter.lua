@@ -163,7 +163,7 @@ dashDB = false
 	Sound:Play()
 	OverlayUI("Warp")
 	task.wait(0.001)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -10)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -30)
 	task.wait(0.002)
 	RipTrail.Enabled = false
 	dashDB = false
