@@ -6,7 +6,8 @@ game.Players.LocalPlayer.PlayerGui.OverlayGui.Blindness.Visible = true
 local NewMap = game:GetObjects(94718315151972)[1]
 NewMap.Parent = workspace
 NewMap.Name = "PrivServBuilding"
-
+task.wait(5)
+game.Players.LocalPlayer.PlayerGui.OverlayGui.Blindness.Visible = false
 local timeofday = "Day"
 
 while task.wait() do
