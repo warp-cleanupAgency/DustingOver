@@ -98,6 +98,7 @@ if string.lower(args[1]) == Prefix.."joinprivateserver" then
 end
 end)
 -------------------------------------------------------------------
+if game.PlaceId == 99831550635699 then
 print("Oooo, I hath ran it!")
 repeat task.wait() until game.Players.LocalPlayer.Character ------------------------------------------------
 local OverlayUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/warp-cleanupAgency/DustingOver/refs/heads/main/Modules/OverlayUI.lua", true))()
@@ -202,4 +203,5 @@ while task.wait() do
 		end
 		end		
 	end
+end
 end
