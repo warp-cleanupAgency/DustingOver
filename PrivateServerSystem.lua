@@ -52,7 +52,7 @@ TipTable = {
 	"Fuck you lousypork!",
 	"Lobotomy of ruina company"
 }
-game.ReplicatedStorage.PermadeathEnabled.Value = true
+
 -----------
 ---SOUND IDS STORAGE
 ---NITB = rbxassetid://89530928135778
