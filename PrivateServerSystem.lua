@@ -188,7 +188,7 @@ end)
 ----------------------
 while task.wait() do
 	if timeofday == "day" then
-		game.Lighting.ClockTime = 8
+		game.Lighting.ClockTime = 15
 	    for i,v in workspace.AreaMarkers:GetDescendants() do
         if string.find(v.Name, "The Backstreets") then
 			v.Name = "The Backstreets"
